@@ -92,17 +92,14 @@ What countries are the largest amount coming from?
 
 Where are they going?
 
-csvcut -c Origin,Value Asylum_Data.csv | csvlook
+`csvcut -c Origin,Value Asylum_Data.csv | csvlook`
 
-csvcut -c STATE,INCOME_AMT IRSdata.csv | csvgrep -c STATE -m ME | cvstat | csvlook
-What is the total income amount for all 990 organisations in ME? $10,043,698,930 How many organisations have 0 income? What is the maximum income? How many rows? What are the 5 most frequent values?
-
-Digging deeper
+## Digging deeper
 
 Let's build a query to figure out the names of the organisations with the highest incomes
 
-csvcut -c STATE,INCOME_AMT IRSdata.csv | csvgrep -c STATE -m ME | csvsort -c INCOME_AMT | csvlook | head 
-Csvkit has sorted the data by INCOME-AMT from lowest to highest - this isn't very convienent so we are going to use the -r flag (reverse) to reverese the sorting order
+csvcut -c Country,Value Asylum_Data.csv | csvgrep -c Country -m Germany | csvsort -c Value | csvlook | head
+Csvkit sorts amounts from lowest to highest - this isn't very convienent so we are going to use the -r flag (reverse) to reverese the sorting order
 
 csvcut -c STATE,INCOME_AMT IRSdata.csv | csvgrep -c STATE -m ME | csvsort -c INCOME_AMT -r | csvlook | head 
 Now see if we can figure out which organisation in Maine has an income amount of over $2 billion
