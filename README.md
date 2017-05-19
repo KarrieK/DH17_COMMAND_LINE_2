@@ -77,35 +77,39 @@ Now we start combining our functions to build queries to explore our data.
 
 We use | or a pipe to combine or stack the commands together to build more powerful queries.
 
-`csvcut -c Origin Asylum_Data.csv | csvlook| head`
+`csvcut -c Origin Asylum_Data.csv | csvlook`
 
 We want to see what sort of data we have - so let's use head and have a look at the first 10 rows
 
-csvcut -n Asylum_Data.csv | csvlook | head
+`csvcut -n Asylum_Data.csv | csvlook | head`
 Unfortunately that doesn't tell us much so let's look and see if we can get some summary stats on the states.
 
-csvcut -c Origin Asylum_Data.csv | csvstat | csvlook
-What countries are people coming from?
-
-`csvcut -c Origin,Value Asylum_Data.csv | csvlook`
-What countries are the largest amount coming from?
+Which countries are people coming from?
+`csvcut -c Origin,Value Asylum_Data.csv | csvlook| head`
 
 Where are they going?
+`csvcut -c Country,Value Asylum_Data.csv | csvlook | head`
 
-`csvcut -c Origin,Value Asylum_Data.csv | csvlook`
+What month had the most refugees?
+
+`csvcut -c Origin,Year,Month,Value Asylum_Data.csv | csvlook | head`
+
 
 ## Digging deeper
 
-Let's build a query to figure out the names of the organisations with the highest incomes
+Using csvgrep we can isolate single countries and dig a bit deeper 
 
-csvcut -c Country,Value Asylum_Data.csv | csvgrep -c Country -m Germany | csvsort -c Value | csvlook | head
+`csvcut -c Country,Value,Origin Asylum_Data.csv | csvgrep -c Country -m Germany | csvlook | head`
+
 Csvkit sorts amounts from lowest to highest - this isn't very convienent so we are going to use the -r flag (reverse) to reverese the sorting order
 
-csvcut -c STATE,INCOME_AMT IRSdata.csv | csvgrep -c STATE -m ME | csvsort -c INCOME_AMT -r | csvlook | head 
-Now see if we can figure out which organisation in Maine has an income amount of over $2 billion
+`csvcut -c Country,Value,Origin Asylum_Data.csv | csvgrep -c Country -m Germany | csvsort -c Value -r | csvlook`
 
-csvcut -c STATE,INCOME_AMT,NAME IRSdata.csv | csvgrep -c STATE -m ME |csvsort -c INCOME_AMT -r | csvlook | head 
-Who is on top? If you are a local paper then maybe there are some surprising results here
+Where are Iraqis going to?
+
+`csvcut -c Country,Value,Origin Asylum_Data.csv | csvgrep -c Origin -m Iraq | csvsort -c Value -r | csvlook`
+
+Any other ideas?
 
 ## Finishing up
 
@@ -113,10 +117,10 @@ Today we only touched briefly on csvkit - while used csvkit briefly in a bash sh
 
 Here are some other custom commands we didn't touch on:
 
-csvsql - Generates SQL statements for a csv or execute those statements directly on a database. In the latter case supports both creating tables and inserting data
-csvpy - Loads a CSV file into a csvkit.CSVKitReader object and then drops into a Python shell so the user can inspect the data however they see fit
-csvformat - Converts a csv to a custom output format
-csvjson - Converts a CSV file into JSON or GeoJSON
+* csvsql - Generates SQL statements for a csv or execute those statements directly on a database. In the latter case supports both creating tables and inserting data
+* csvpy - Loads a CSV file into a csvkit.CSVKitReader object and then drops into a Python shell so the user can inspect the data however they see fit
+* csvformat - Converts a csv to a custom output format
+* csvjson - Converts a CSV file into JSON or GeoJSON
 
 ## Resources
 
