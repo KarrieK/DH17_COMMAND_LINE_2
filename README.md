@@ -4,13 +4,9 @@
 
 In our last session we learnt some unix commands and can now move files around our filesystem like a pro - time to start digging into our data. ALl without using a mouse!
 
-Csvkit is the king of csv wrangling libraries. It converts, greps, sorts and outputs large sets of data so you don't need to use Excel or SQL.It provides a user with a nice intro to the awesome power of the command line.
+Csvkit is the king of csv wrangling libraries. It converts, greps, sorts and outputs large sets of data so you don't need to use Excel or SQL.
 
-Csvkit is flexible, easy to use and powerful. It is not limited to a million rows of data like excel, yet is time efficient so you aren't waiting for queries like SQL. It's a great stepping stone to the command line and programming languages.
-
-We are going to learn how to convert an excel file to a csv then analyse it and output our results. We will also cover some of the basic unix commands like pwd, cd, etc so you can learn how to navigate through a termainal.
-
-If you want a more comprehensive list of unix tools, I'll have one up on github after the class
+Csvkit is flexible, easy to use and powerful. It is not limited to a million rows of data like excel, yet is time efficient so you aren't waiting for queries like SQL. It's a great stepping stone to learning how to program.
 
 ##Commands we're going to cover: ##
 
@@ -23,38 +19,28 @@ If you want a more comprehensive list of unix tools, I'll have one up on github 
 * csvgrep - regex command like a refined search function in our csv
 * head - limits data to the top ten rows
 
-##S
+## Installation ##
 
-pip2.7 install --user csvkit
-##Unix commands for navigating Now we need to navigate into the correct folder in the terminal in order to perform analysis on our data
+You can use `sudo easy_install csvkit` to install csvkit. Shout if that works if not there are some other options
 
-To do that we are going to use a couple of unix commands on the command line.
+Install Homebrew. Then do pip install csvkit at the command line. You might need to use `pip3 install csvkit`if you're running python 3 - if this doesn't work we need to bump it up a level. Time to break out the sudo (super user) command. Try `sudo pip install csvkit` 
 
-pwd - print working directory
-cd - change directory
-ls - lists the contents of a folder
-Type pwd to check that you're in your own home directory
+# Looking at our data
 
-Now we need to check that our data was correctly uploaded into our virtual machine to do this we use the command below:
+* in2csv
+* csvlook
+* csvcut
 
-ls 
-You should see your data in here - of not shout and someone will give you a hand!
+Because you're all fabulous we can skip step one. Our data is already in csv format but if it's not you can convert from xlsx to csv using in2csv
 
-#Looking at our data
+`in2csv sampledata.xlsx > data.csv`
 
-in2csv
-csvlook
-csvcut
-Our data set is from the IRE data library - The first thing we need to do get our data into the terminal in the right format.
+Ok are we in the right folder?
 
-If you are dealling with an excel file you can covert your data using the command
+Let's take a look at what we've got
 
-in2csv sampledata.xlsx > data.csv
-But as our data set is already a csv we need to navigate into the right folder so we can look at our data and figure out what we've got.
+`csvlook TED_CAN_2015.csv`
 
-Csvlook will dump the entire csv into your terminal
-
-csvlook data.csv
 Your data is probably going to look like a mess. The rows and columns can't all fit in the width of your terminal and so it's going to be pretty dificult to make any sense of what you've got.
 
 We need to refine and figure out the schema of what we're looking at.
