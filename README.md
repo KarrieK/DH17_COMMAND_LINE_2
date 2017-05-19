@@ -39,59 +39,60 @@ Ok are we in the right folder?
 
 Let's take a look at what we've got
 
-`csvlook TED_CAN_2015.csv`
+`csvlook Asylum_Data.csv`
 
 Your data is probably going to look like a mess. The rows and columns can't all fit in the width of your terminal and so it's going to be pretty dificult to make any sense of what you've got.
 
 We need to refine and figure out the schema of what we're looking at.
 
-csvcut -n data. csv 
+`csvcut -n Asylum_Data.csv`
+
 The -n means that we should see the names of the columns
 
 This is about the time that we grab a data dictionary to figure out what each column means
 
 ##Data formatting
 
-csvclean
-csvstat
+* csvclean
+* csvstat
 Let's clean the data quickly to make sure it's formatted correctly.
 
-csvclean IRSdata.csv
+`csvclean Asylum_Data.csv`
+
 Now we get look at some basic stats to look for trends in our data.
 
-csvstat IRSdata.csv
+`csvstat Asylum_Data.csv`
+
 This is another handy way of checking how clean your data is - look for values that are out of place like if there was more than 12 unique values for Month.
 
 Time to start wrangling.
 
 ##Data Wrangling
 
-head - limits to the top 10 rows
-csvcut - slices away segements of our data
-csvgrep - Regular expression allowing us to filter our data
-csvsort - sorts the data
+* head - limits to the top 10 rows
+* csvcut - slices away segements of our data
+* csvgrep - Regular expression allowing us to filter our data
+* csvsort - sorts the data
 Now we start combining our functions to build queries to explore our data.
 
 We use | or a pipe to combine or stack the commands together to build more powerful queries.
 
-Let's have a look at which states have IRS 990 organisations.
+`csvcut -c Origin Asylum_Data.csv | csvlook| head`
 
-csvcut -c STATE IRSdata.csv | csvlook
 We want to see what sort of data we have - so let's use head and have a look at the first 10 rows
 
-csvcut -n IRSdata.csv | csvlook | head
+csvcut -n Asylum_Data.csv | csvlook | head
 Unfortunately that doesn't tell us much so let's look and see if we can get some summary stats on the states.
 
-csvcut -c STATE IRSdata.csv | csvstat | csvlook
-Which state has the most amount of organisations? But what does that mean?
+csvcut -c Origin Asylum_Data.csv | csvstat | csvlook
+What countries are people coming from?
 
-Let's take a look to see if there are multiple organisations of the same name in the data set
+`csvcut -c Origin,Value Asylum_Data.csv | csvlook`
+What countries are the largest amount coming from?
 
-csvcut -c NAME IRSdata.csv | csvstat | csvlook
-Let's combine STATE and INCOME_AMT to see what we get
+Where are they going?
 
-csvcut -c STATE,INCOME_AMT IRSdata.csv | csvlook
-Obviously there are more organisation in Maine than other states. Let's use csvgrep to take a closer look at what's going on in Maine
+csvcut -c Origin,Value Asylum_Data.csv | csvlook
 
 csvcut -c STATE,INCOME_AMT IRSdata.csv | csvgrep -c STATE -m ME | cvstat | csvlook
 What is the total income amount for all 990 organisations in ME? $10,043,698,930 How many organisations have 0 income? What is the maximum income? How many rows? What are the 5 most frequent values?
