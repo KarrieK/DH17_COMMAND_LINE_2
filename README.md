@@ -8,7 +8,7 @@ Csvkit is the king of csv wrangling libraries. It converts, greps, sorts and out
 
 Csvkit is flexible, easy to use and powerful. It is not limited to a million rows of data like excel, yet is time efficient so you aren't waiting for queries like SQL. It's a great stepping stone to learning how to program.
 
-##Commands we're going to cover: ##
+## Commands we're going to cover: ##
 
 * in2csv - converts a file into a csv
 * csvlook - gives us a preview of our data
@@ -51,7 +51,7 @@ The -n means that we should see the names of the columns
 
 This is about the time that we grab a data dictionary to figure out what each column means
 
-##Data formatting
+## Data formatting
 
 * csvclean
 * csvstat
@@ -67,7 +67,7 @@ This is another handy way of checking how clean your data is - look for values t
 
 Time to start wrangling.
 
-##Data Wrangling
+## Data Wrangling
 
 * head - limits to the top 10 rows
 * csvcut - slices away segements of our data
@@ -110,7 +110,7 @@ Now see if we can figure out which organisation in Maine has an income amount of
 csvcut -c STATE,INCOME_AMT,NAME IRSdata.csv | csvgrep -c STATE -m ME |csvsort -c INCOME_AMT -r | csvlook | head 
 Who is on top? If you are a local paper then maybe there are some surprising results here
 
-##Finishing up
+## Finishing up
 
 Today we only touched briefly on csvkit - while used csvkit briefly in a bash shell you can combine it with python or SQL to build powerful queries and keep interrogating your data.
 
@@ -120,7 +120,8 @@ csvsql - Generates SQL statements for a csv or execute those statements directly
 csvpy - Loads a CSV file into a csvkit.CSVKitReader object and then drops into a Python shell so the user can inspect the data however they see fit
 csvformat - Converts a csv to a custom output format
 csvjson - Converts a CSV file into JSON or GeoJSON
-##Resources
+
+## Resources
 
 If you want to dig deep and get to know csvkit better then check out the great documentation and tutorial on readthedocs.
 
