@@ -81,7 +81,7 @@ We use | or a pipe to combine or stack the commands together to build more power
 
 We want to see what sort of data we have - so let's use head and have a look at the first 10 rows
 
-`csvcut -n Asylum_Data.csv | csvlook | head`
+`csvcut Asylum_Data.csv | csvlook | head`
 Unfortunately that doesn't tell us much so let's look and see if we can get some summary stats on the states.
 
 Which countries are people coming from?
@@ -99,7 +99,7 @@ What month had the most refugees?
 
 Using csvgrep we can isolate single countries and dig a bit deeper 
 
-`csvcut -c Country,Value,Origin Asylum_Data.csv | csvgrep -c Country -m Germany | csvlook | head`
+`csvcut -c Country,Value,Origin,Year Asylum_Data.csv | csvgrep -c Country -m Germany | csvlook | head`
 
 Csvkit sorts amounts from lowest to highest - this isn't very convienent so we are going to use the -r flag (reverse) to reverese the sorting order
 
