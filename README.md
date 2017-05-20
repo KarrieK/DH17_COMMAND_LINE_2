@@ -2,7 +2,7 @@
 
 ## Review ##
 
-In our last session we learnt some unix commands and can now move files around our filesystem like a pro - time to start digging into our data. ALl without using a mouse!
+In our last session we learnt some unix commands and can now move files around our filesystem like a pro - time to start digging into our data. All without using a mouse!
 
 Csvkit is the king of csv wrangling libraries. It converts, greps, sorts and outputs large sets of data so you don't need to use Excel or SQL.
 
@@ -126,8 +126,8 @@ Here are some other custom commands we didn't touch on:
 
 If you want to dig deep and get to know csvkit better then check out the great documentation and tutorial on readthedocs.
 
-https://csvkit.readthedocs.org/en/0.9.1/tutorial.html
-https://source.opennews.org/en-US/articles/eleven-awesome-things-you-can-do-csvkit/
+* https://csvkit.readthedocs.org/en/0.9.1/tutorial.html
+* https://source.opennews.org/en-US/articles/eleven-awesome-things-you-can-do-csvkit/
 ## Contact me
 
 Email: karrie.anne.kehoe@gmail.com Twitter: @karriekehoe
